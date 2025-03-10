@@ -6,8 +6,10 @@ import {
 import { ctrlWrapper } from "../utils/ctrlWrapper.js";
 import { validateBody } from "../middleware/validateBody.js";
 import { productSchema } from "../validation/productSchema.js";
+import { authenticate } from "../middleware/authetication.js";
 
 const router = Router();
+router.use(authenticate);
 router.post(
   "/",
   validateBody(productSchema),

@@ -37,3 +37,10 @@ export const loginUserService = async (body) => {
     refreshTokenValidUntil: new Date(Date.now() + ONE_DAY),
   });
 };
+
+export const refreshUserSession = async ({ sessionId, refreshToken }) => {
+  const session = await SessionModel.findOne({ _id: sessionId, refreshToken });
+  if (!session) {
+    throw createHttpError(401, " Session not found");
+  }
+};

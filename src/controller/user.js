@@ -1,3 +1,4 @@
+import { ONE_DAY } from "../constants/index.js";
 import { loginUserService, registerUserService } from "../service/user.js";
 
 export const userRegisterController = async (req, res) => {
@@ -24,3 +25,6 @@ export const userLoginController = async (req, res) => {
     data: { accessToken: session.accessToken },
   });
 };
+export const refreshUserSessionController = async(req, res) => {
+const session = await refreshUserSession({sessionId: req.cookies.sessionId, refreshToken: req.cookies.refreshToken})
+}

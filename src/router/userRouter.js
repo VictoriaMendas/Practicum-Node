@@ -20,4 +20,5 @@ router.post(
   validateBody(loginUserSchema),
   ctrlWrapper(userLoginController)
 );
+router.post("/refresh", ctrlWrapper());
 export default router;
