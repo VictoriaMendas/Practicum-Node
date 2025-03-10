@@ -1,5 +1,17 @@
 import { Router } from "express";
-import { createProductController } from "../controller/products.js";
+import {
+  createProductController,
+  getProductsController,
+} from "../controller/products.js";
+import { ctrlWrapper } from "../utils/ctrlWrapper.js";
+import { validateBody } from "../middleware/validateBody.js";
+import { productSchema } from "../validation/productSchema.js";
 
-export const router = Router();
-router.post("/", createProductController);
+const router = Router();
+router.post(
+  "/",
+  validateBody(productSchema),
+  ctrlWrapper(createProductController)
+);
+router.get("/", ctrlWrapper(getProductsController));
+export default router;
